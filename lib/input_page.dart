@@ -23,26 +23,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
-
-  void updateColor(GenderType gender) {
-    if (gender == GenderType.male) {
-      if (maleCardColor == inactiveCardColor) {
-        maleCardColor = activeCardColor;
-        femaleCardColor = inactiveCardColor;
-      } else {
-        // maleCardColor = inactiveCardColor;
-      }
-    } else {
-      if (femaleCardColor == inactiveCardColor) {
-        femaleCardColor = activeCardColor;
-        maleCardColor = inactiveCardColor;
-      } else {
-        // femaleCardColor = inactiveCardColor;
-      }
-    }
-  }
+  GenderType genderTypeVarble = GenderType.male;
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +43,13 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          updateColor(
-                            GenderType.male,
-                          );
+                          genderTypeVarble = GenderType.male;
                         });
                       },
                       child: ReusebleCard(
-                        colour: maleCardColor,
+                        colour: genderTypeVarble == GenderType.male
+                            ? activeCardColor
+                            : inactiveCardColor,
                         cardChild: CardContentWidget(
                           awesomeIcone: maleIcone,
                           textContent: iconeTextMale,
@@ -80,11 +61,14 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          updateColor(GenderType.female);
+                          genderTypeVarble = GenderType.female;
                         });
                       },
                       child: ReusebleCard(
-                        colour: femaleCardColor,
+                        colour: genderTypeVarble == GenderType.female
+                            ? activeCardColor
+                            : inactiveCardColor,
+
                         cardChild: CardContentWidget(
                           awesomeIcone: femaleIcone,
                           textContent: iconeTextFemale,
