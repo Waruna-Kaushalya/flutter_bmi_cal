@@ -12,6 +12,11 @@ const IconData femaleIcone = FontAwesomeIcons.venus;
 const String iconeTextMale = 'MALE';
 const String iconeTextFemale = 'FEMALE';
 
+enum GenderType {
+  male,
+  female,
+}
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -21,20 +26,20 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColor = inactiveCardColor;
   Color femaleCardColor = inactiveCardColor;
 
-  void updateColor(int gender) {
-    if (gender == 1) {
+  void updateColor(GenderType gender) {
+    if (gender == GenderType.male) {
       if (maleCardColor == inactiveCardColor) {
         maleCardColor = activeCardColor;
         femaleCardColor = inactiveCardColor;
       } else {
-        maleCardColor = inactiveCardColor;
+        // maleCardColor = inactiveCardColor;
       }
     } else {
       if (femaleCardColor == inactiveCardColor) {
         femaleCardColor = activeCardColor;
         maleCardColor = inactiveCardColor;
       } else {
-        femaleCardColor = inactiveCardColor;
+        // femaleCardColor = inactiveCardColor;
       }
     }
   }
@@ -58,7 +63,7 @@ class _InputPageState extends State<InputPage> {
                       onTap: () {
                         setState(() {
                           updateColor(
-                            1,
+                            GenderType.male,
                           );
                         });
                       },
@@ -75,7 +80,7 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          updateColor(2);
+                          updateColor(GenderType.female);
                         });
                       },
                       child: ReusebleCard(
