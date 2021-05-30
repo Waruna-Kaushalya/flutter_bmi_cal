@@ -27,7 +27,10 @@ class CardContentWidget extends StatelessWidget {
         ),
         Text(
           textContent,
-          style: labelTextStyle,
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.blue,
+          ),
         )
       ],
     );

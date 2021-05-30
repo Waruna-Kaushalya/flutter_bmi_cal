@@ -9,9 +9,8 @@ class ReusebleCard extends StatelessWidget {
 
   final Color? colour;
   final Widget? cardChild;
-
-  // final VoidCallback? onPress;
-  final Function onPress;
+  final VoidCallback? onPress;
+  // final Function onPress;
   // final Function() onPress;
   // final Function()? onPress;
 
@@ -23,7 +22,6 @@ class ReusebleCard extends StatelessWidget {
         margin: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           color: colour,
-          // Color(0xFF1D1E33)
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: cardChild,
