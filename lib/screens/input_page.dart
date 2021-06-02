@@ -1,9 +1,13 @@
+import 'package:bmi_calculator/screens/result_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'resuable_card.dart';
-import 'icon_content.dart';
-import 'consts.dart';
+import 'package:bmi_calculator/components/resuable_card.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
+import 'package:bmi_calculator/components/bottomButtonWidget.dart';
+import 'package:bmi_calculator/components/roundButton.dart';
+import 'package:bmi_calculator/consts.dart';
+import 'package:bmi_calculator/calculation.dart';
+import 'package:bmi_calculator/screenArguments.dart';
 
 enum GenderType {
   male,
@@ -13,6 +17,7 @@ enum GenderType {
 int height = 180;
 int weight = 50;
 int age = 50;
+Map<String, int> hwValues = {};
 
 class InputPage extends StatefulWidget {
   @override
@@ -22,22 +27,24 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   GenderType genderTypeVarble = GenderType.male;
 
-  stateSetterAA(int a) {
-    setState(() {
-      if (a == 1) {
-        weight++;
-      } else {
-        weight--;
-      }
-    });
-  }
+  // stateSetterAA(int a) {
+  //   setState(() {
+  //     if (a == 1) {
+  //       weight++;
+  //     } else {
+  //       weight--;
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'BMI Calculator',
+        title: Center(
+          child: Text(
+            'BMI Calculator',
+          ),
         ),
       ),
       body: Container(
@@ -129,6 +136,7 @@ class _InputPageState extends State<InputPage> {
                         onChanged: (double newValue) {
                           setState(() {
                             height = newValue.round();
+                            hwValues['heightValue'] = height;
                           });
                         },
                       ),
@@ -156,11 +164,11 @@ class _InputPageState extends State<InputPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              //TODO:1
                               RoundIconButton(
                                 onPress: () {
                                   setState(() {
                                     weight--;
+                                    hwValues['weightValue'] = weight;
                                   });
                                 },
                                 icon: FontAwesomeIcons.minus,
@@ -172,6 +180,7 @@ class _InputPageState extends State<InputPage> {
                                 onPress: () {
                                   setState(() {
                                     weight++;
+                                    hwValues['weightValue'] = weight;
                                   });
                                 },
                                 icon: FontAwesomeIcons.plus,
@@ -200,7 +209,6 @@ class _InputPageState extends State<InputPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              //TODO:1
                               RoundIconButton(
                                 onPress: () {
                                   setState(() {
@@ -231,40 +239,18 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              color: kBottomContainerColor,
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 10),
-              height: kBottomContainerHeight,
+            BottomButtonWdgt(
+              onPress: () {
+                CalculationBrain calc =
+                    CalculationBrain(height: height, weight: weight);
+                Navigator.pushNamed(context, ResultRoute.routeName,
+                    arguments: ScreenArguments(calc.getResult(),
+                        calc.calculateBMI(), calc.getInterpretation()));
+              },
+              buttonLabel: 'CALCULATE',
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({required this.icon, required this.onPress});
-  final IconData? icon;
-  final VoidCallback? onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(
-        icon,
-        color: Colors.white,
-      ),
-      //TODO: 2
-      onPressed: onPress,
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4c4F5E),
-      elevation: 0,
-      disabledElevation: 0,
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
       ),
     );
   }

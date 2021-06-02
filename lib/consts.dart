@@ -10,6 +10,27 @@ const IconData kFemaleIcone = FontAwesomeIcons.venus;
 const String kIconeTextMale = 'MALE';
 const String kIconeTextFemale = 'FEMALE';
 
+const kCalculateLabel = TextStyle(
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+  fontSize: 20,
+);
+const kresultNormal = TextStyle(
+  color: Colors.green,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
+const kresultValueLabel = TextStyle(
+  color: Colors.white,
+  fontSize: 80,
+  fontWeight: FontWeight.bold,
+);
+
+const kmsgLabel = TextStyle(
+  color: Colors.white,
+  fontSize: 15,
+);
+
 const kLabelTextStyle = TextStyle(
   fontSize: 18,
   color: Color(
