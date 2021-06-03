@@ -243,6 +243,8 @@ class _InputPageState extends State<InputPage> {
               onPress: () {
                 CalculationBrain calc =
                     CalculationBrain(height: height, weight: weight);
+
+//TODO 6: navigate to ResultRoute and pass arguments
                 Navigator.pushNamed(context, ResultRoute.routeName,
                     arguments: ScreenArguments(calc.getResult(),
                         calc.calculateBMI(), calc.getInterpretation()));

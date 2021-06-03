@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../consts.dart';
+import '../../consts.dart';
 
 class CardContentWidget extends StatelessWidget {
   CardContentWidget({required this.awesomeIcone, required this.textContent});

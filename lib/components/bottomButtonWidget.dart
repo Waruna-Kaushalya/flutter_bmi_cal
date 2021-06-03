@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../consts.dart';
+import '../../consts.dart';
 
 class BottomButtonWdgt extends StatelessWidget {
   BottomButtonWdgt({required this.onPress, required this.buttonLabel});
