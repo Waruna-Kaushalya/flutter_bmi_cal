@@ -16,6 +16,7 @@ class BMICalculator extends StatelessWidget {
         accentColor: Colors.pink,
       ),
       home: InputPage(),
+      //TODO 1: Define routes for navigation
       routes: {
         ResultRoute.routeName: (context) => ResultRoute(),
       },

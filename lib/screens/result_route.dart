@@ -5,10 +5,12 @@ import '../components/bottomButtonWidget.dart';
 import 'package:bmi_calculator/screenArguments.dart';
 
 class ResultRoute extends StatelessWidget {
+  //TODO 3: define rout name as string
   static const routeName = '/extractArguments';
 
   @override
   Widget build(BuildContext context) {
+    //TODO 4: define object for access ScreenArguments class data
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
 
     return Scaffold(
@@ -28,6 +30,7 @@ class ResultRoute extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
+                    //TODO 5: access ScreenArguments data
                     args.bmiResultValue,
                     style: kresultNormal,
                   ),
